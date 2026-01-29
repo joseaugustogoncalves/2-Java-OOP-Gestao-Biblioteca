@@ -1,0 +1,53 @@
+name: Java CI
+
+on:
+  push:
+    branches:
+      - master;  # Atualize aqui para sua branch principal
+  pull_request:
+    branches:
+      - master  # Atualize aqui para pull requests direcionados à sua branch principal
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # 1. Checkout do código do repositório do aluno
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Configuração do JDK 17
+      - name: Setup Java 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: temurin
+
+      # 3. Buscar os testes da branch do professor (solucao-final)
+      - name: Fetch Tests from Professor Repository
+        run: |
+          echo "Clonando os testes do repositório do professor"
+          git remote add joseaugustogoncalves https://github.com/joseaugustogoncalves/2-Java-OOP-Gestao-Biblioteca.git
+          git fetch joseaugustogoncalves solucao-final
+          git checkout joseaugustogoncalves/solucao-final -- src/test
+
+      # 4. Debug para garantir que os testes foram mesclados corretamente
+      - name: Debug Directory Structure
+        run: |
+          echo "Verificando se os testes estão no lugar correto:"
+          find .
+          echo "Arquivos em src/test/java:"
+          find src/test/java || echo "Nenhum arquivo encontrado em src/test/java"
+
+      # 5. Limpar arquivos do BlueJ
+      - name: Clean BlueJ Files
+        run: |
+          echo "Limpando arquivos do BlueJ"
+          find . -name "*.bluej" -delete
+          find . -name "*.ctxt" -delete
+
+      # 6. Rodar os testes com Maven
+      - name: Run Maven Tests
+        run: mvn clean test
