@@ -16,6 +16,18 @@ A tua tarefa é implementar os métodos responsáveis por:
 * Remover livros da biblioteca.
 * Pesquisar um livro pelo título.
 
+## Exemplo de Utilização da Classe Biblioteca
+Incluir na classe Main por forma a realizar as seguintes operações:
+
+* Criar uma biblioteca.
+* Adicionar três livros:
+* Título: "O Senhor dos Anéis", Autor: "J.R.R. Tolkien", Ano: 1954.
+* Título: "Duna", Autor: "Frank Herbert", Ano: 1965.
+* Título: "1984", Autor: "George Orwell", Ano: 1949.
+* Tentar adicionar um novo livro com o mesmo título que já existe.
+* Remover um livro da biblioteca.
+* Listar todos os livros restantes na biblioteca.
+
 ## Objetivos Gerais
 Promover a prática e o aprimoramento de conceitos fundamentais da programação orientada a objetos (POO) em Java, como criação de classes, encapsulamento, atributos e métodos.
 Implementar e utilizar variáveis de instância e de classe (static) em situações práticas.
